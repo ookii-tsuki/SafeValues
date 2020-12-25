@@ -107,59 +107,59 @@ This class saves and loads various data types and classes using AES encryption t
   * Example of Encrypting/Decrypting and saving/loading values to/from PlayerPrefs using AES encryption
   
     ```csharp
-        using Med.SafeValue;
-        using UnityEngine;
+    using Med.SafeValue;
+    using UnityEngine;
 
-        public class Test : MonoBehaviour
+    public class Test : MonoBehaviour
+    {
+        SafeFloat speed = new SafeFloat(500f);
+        SafeInt health = new SafeInt(100);
+        string title = "Plane 1";
+        bool isActive = true;
+
+        void Awake()
         {
-            SafeFloat speed = new SafeFloat(500f);
-            SafeInt health = new SafeInt(100);
-            string title = "Plane 1";
-            bool isActive = true;
-
-            void Awake()
-            {
-                //It is recommanded to set an encryption key, otherwise it is going to use a default key
-                //Warning: always use the same key when encrypting or decrypting
-                PlayerSaves.Key = "/A?D(G+KbPeShVmYq3t6w9z$C&E)H@Mc";
-			}
-
-            public void SaveValues()
-            {
-                speed.Value.EncryptFloat("plSpeed");
-                health.Value.EncryptInt("plHealth");
-                title.EncryptString("plTitle");
-                isActive.EncryptBool("plAct");
-			}
-
-            public void LoadValues()
-            {
-                speed.Value = PlayerSaves.DecryptFloat("plSpeed");
-                health.Value = PlayerSaves.DecryptInt("plHealth");
-                title = PlayerSaves.DecryptString("plTitle");
-                isActive = PlayerSaves.DecryptBool("plAct");
-			}
+            //It is recommanded to set an encryption key, otherwise it is going to use a default key
+            //Warning: always use the same key when encrypting or decrypting
+            PlayerSaves.Key = "/A?D(G+KbPeShVmYq3t6w9z$C&E)H@Mc";
         }
+
+        public void SaveValues()
+        {
+            speed.Value.EncryptFloat("plSpeed");
+            health.Value.EncryptInt("plHealth");
+            title.EncryptString("plTitle");
+            isActive.EncryptBool("plAct");
+        }
+
+        public void LoadValues()
+        {
+            speed.Value = PlayerSaves.DecryptFloat("plSpeed");
+            health.Value = PlayerSaves.DecryptInt("plHealth");
+            title = PlayerSaves.DecryptString("plTitle");
+            isActive = PlayerSaves.DecryptBool("plAct");
+        }
+    }
     ```
   * Example of setting up an anti speed hack to detect speed hacks
   
     ```csharp
-        using Med.SafeValue;
-        using UnityEngine;
+    using Med.SafeValue;
+    using UnityEngine;
 
-        public class Test : MonoBehaviour
+    public class Test : MonoBehaviour
+    {
+        void Awake()
         {
-            void Awake()
-            {
-                StartCoroutine(AntiSpeedHack.Start(CloseGame, 2f, true));
-			}
-
-            //This will be called if the AntiSpeedHack class detected a speed hack
-            void CloseGame()
-            {
-                Application.Quit();
-			}
+            StartCoroutine(AntiSpeedHack.Start(CloseGame, 2f, true));
         }
+
+        //This will be called if the AntiSpeedHack class detected a speed hack
+        void CloseGame()
+        {
+            Application.Quit();
+        }
+    }
     ```
 
 <!-- LICENSE -->
@@ -173,6 +173,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Med Ben Chrifa - mohamed6aminbenchrifa@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/your_username/repo_name](https://github.com/med9999/SafeValues)
 
 
