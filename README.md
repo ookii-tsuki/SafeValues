@@ -36,7 +36,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 
 ### Installation
 
-* Download the "SfVal.dll" file and place it in Assets/Plugins of your project that's all
+* Download the [Latest release](https://github.com/med9999/SafeValues/releases/tag/1.0.0.0) and place the `SfVal.dll` file in Assets/Plugins of your project.
 
 
 <!-- USAGE EXAMPLES -->
