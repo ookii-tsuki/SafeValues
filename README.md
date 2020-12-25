@@ -42,9 +42,9 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-###### Player Saves
+### Safe Values
 
-This class saves and loads various data types and classes using AES encryption to playerprefs.
+**These structs hide values from cheating tools by making an offset to it**
 
   * Example of hiding a float/integer from cheating tools.
    
@@ -69,6 +69,10 @@ This class saves and loads various data types and classes using AES encryption t
         }
     }
     ```
+    
+### Player Saves
+
+**This class saves and loads various data types and classes using AES encryption to playerprefs.**
     
   * Example of Encrypting/Decrypting and saving/loading a custom serializable class to/from PlayerPrefs using AES encryption
   
@@ -141,6 +145,10 @@ This class saves and loads various data types and classes using AES encryption t
         }
     }
     ```
+### Safe Values
+
+**This class detects speed hack attempts**
+
   * Example of setting up an anti speed hack to detect speed hacks
   
     ```csharp
