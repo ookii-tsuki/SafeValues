@@ -64,7 +64,7 @@ This class saves and loads various data types and classes using AES encryption t
             health.Value -= amount;
         }
         void Update()
-	{
+        {
             rb.velocity = Vector3.forward * speed.Value * Time.deltaTime;
         }
     }
@@ -73,36 +73,36 @@ This class saves and loads various data types and classes using AES encryption t
   * Example of Encrypting/Decrypting and saving/loading a custom serializable class to/from PlayerPrefs using AES encryption
   
     ```csharp
-        using Med.SafeValue;
-        using UnityEngine;
+    using Med.SafeValue;
+    using UnityEngine;
 
-        public class Test : MonoBehaviour
+    public class Test : MonoBehaviour
+    {
+        public Card card;
+
+        void Awake()
         {
-            public Card card;
-
-            void Awake()
-            {
-                //It is recommanded to set an encryption key, otherwise it is going to use a default key
-                PlayerSaves.Key = "/A?D(G+KbPeShVmYq3t6w9z$C&E)H@Mc";
-			}
-
-            public void SaveCard()
-            {
-                PlayerSaves.EncryptClass(card, "card1");
-			}
-            public Card LoadCard()
-            {
-                return PlayerSaves.DecryptClass<Card>("card1");
-			}
-
-            [System.Serializable]
-            class Card
-            {
-                public string title;
-                public int number;
-                public bool isLegendary;
-			}
+            //It is recommanded to set an encryption key, otherwise it is going to use a default key
+            PlayerSaves.Key = "/A?D(G+KbPeShVmYq3t6w9z$C&E)H@Mc";
         }
+
+        public void SaveCard()
+        {
+            PlayerSaves.EncryptClass(card, "card1");
+        }
+        public Card LoadCard()
+        {
+            return PlayerSaves.DecryptClass<Card>("card1");
+        }
+
+        [System.Serializable]
+        class Card
+        {
+            public string title;
+            public int number;
+            public bool isLegendary;
+        }
+    }
     ```
   * Example of Encrypting/Decrypting and saving/loading values to/from PlayerPrefs using AES encryption
   
