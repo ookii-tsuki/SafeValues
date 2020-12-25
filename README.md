@@ -46,7 +46,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 
 This class saves and loads various data types and classes using AES encryption to playerprefs.
 
-   * Example of hiding a float/integer from cheating tools.
+  * Example of hiding a float/integer from cheating tools.
    
     ```csharp
     using Med.SafeValue;
