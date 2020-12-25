@@ -62,11 +62,11 @@ This class saves and loads various data types and classes using AES encryption t
         public void DealDamage(int amount)
         {
             health.Value -= amount;
-	}
+        }
         void Update()
-        {
+	{
             rb.velocity = Vector3.forward * speed.Value * Time.deltaTime;
-	}
+        }
     }
     ```
     
