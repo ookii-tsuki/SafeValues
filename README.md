@@ -145,7 +145,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
         }
     }
     ```
-### Safe Values
+### Anti-Speedhack
 
 **This class detects speed hack attempts**
 
