@@ -46,7 +46,8 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 
 This class saves and loads various data types and classes using AES encryption to playerprefs.
 
-    * Example of hiding a float/integer from cheating tools.
+   * Example of hiding a float/integer from cheating tools.
+   
     ```csharp
         using Med.SafeValue;
         using UnityEngine;
@@ -68,7 +69,9 @@ This class saves and loads various data types and classes using AES encryption t
 			}
         }
     ```
-    * Example of Encrypting/Decrypting and saving/loading a custom serializable class to/from PlayerPrefs using AES encryption
+    
+  * Example of Encrypting/Decrypting and saving/loading a custom serializable class to/from PlayerPrefs using AES encryption
+  
     ```csharp
         using Med.SafeValue;
         using UnityEngine;
@@ -101,7 +104,8 @@ This class saves and loads various data types and classes using AES encryption t
 			}
         }
     ```
-    * Example of Encrypting/Decrypting and saving/loading values to/from PlayerPrefs using AES encryption
+  * Example of Encrypting/Decrypting and saving/loading values to/from PlayerPrefs using AES encryption
+  
     ```csharp
         using Med.SafeValue;
         using UnityEngine;
@@ -137,7 +141,8 @@ This class saves and loads various data types and classes using AES encryption t
 			}
         }
     ```
-    * Example of setting up an anti speed hack to detect speed hacks
+  * Example of setting up an anti speed hack to detect speed hacks
+  
     ```csharp
         using Med.SafeValue;
         using UnityEngine;
