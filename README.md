@@ -49,25 +49,25 @@ This class saves and loads various data types and classes using AES encryption t
    * Example of hiding a float/integer from cheating tools.
    
     ```csharp
-        using Med.SafeValue;
-        using UnityEngine;
+    using Med.SafeValue;
+    using UnityEngine;
 
-        public class Test : MonoBehaviour
+    public class Test : MonoBehaviour
+    {
+        SafeFloat speed = new SafeFloat(500f);
+        SafeInt health = new SafeInt(100);
+
+        public RigidBody rb;
+
+        public void DealDamage(int amount)
         {
-            SafeFloat speed = new SafeFloat(500f);
-            SafeInt health = new SafeInt(100);
-
-            public RigidBody rb;
-
-            public void DealDamage(int amount)
-            {
-                health.Value -= amount;
-			}
-            void Update()
-            {
-                rb.velocity = Vector3.forward * speed.Value * Time.deltaTime;
-			}
-        }
+            health.Value -= amount;
+	}
+        void Update()
+        {
+            rb.velocity = Vector3.forward * speed.Value * Time.deltaTime;
+	}
+    }
     ```
     
   * Example of Encrypting/Decrypting and saving/loading a custom serializable class to/from PlayerPrefs using AES encryption
