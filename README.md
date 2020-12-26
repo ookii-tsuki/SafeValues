@@ -25,7 +25,7 @@
 This is a small project I have been working on for anti cheating in Unity Engine.
 It allows you to protect your game from cheating tools but it doesn't protect its files from being ripped off.
 
-###### Key Featurs
+###### Key Features
     * Hides variables in memory.
     * Encrypts and extends PlayerPrefs.
     * Detects speedhacks.
@@ -44,7 +44,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 
 ### Safe Values
 
-**These structs hide values from cheating tools by making an offset to it**
+**These structs hide values from cheating tools by making an offset to them**
 
   * Example of hiding a float/integer from cheating tools.
    
@@ -87,6 +87,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
         void Awake()
         {
             //It is recommanded to set an encryption key, otherwise it is going to use a default key
+            //Warning: always use the same key when encrypting or decrypting
             PlayerSaves.Key = "/A?D(G+KbPeShVmYq3t6w9z$C&E)H@Mc";
         }
 
