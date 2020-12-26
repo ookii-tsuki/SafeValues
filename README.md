@@ -12,6 +12,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#demo">Demo</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -170,12 +171,16 @@ It allows you to protect your game from cheating tools but it doesn't protect it
         }
     }
     ```
+    
+<!-- DEMO -->
+## Demo
+
+Try a WebGL [Demo](https://med9999.github.io/SafeValues/index.html)
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
 
 <!-- CONTACT -->
 ## Contact
