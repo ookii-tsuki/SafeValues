@@ -34,7 +34,7 @@ namespace Med.SafeValue
                     timer = DateTime.Now.Second;
 
                 sysTime = DateTime.Now.Second;
-                timer += Time.deltaTime;
+                timer += Time.unscaledDeltaTime;
 
                 var result = Mathf.Abs(timer - sysTime);
 
