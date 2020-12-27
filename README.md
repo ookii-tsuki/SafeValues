@@ -94,10 +94,12 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 
         public void SaveCard()
         {
+            //will encrypt and save the class in playerprefs
             PlayerSaves.EncryptClass(card, "card1");
         }
         public Card LoadCard()
         {
+            //will load the class from playerprefs and decrypt it
             return PlayerSaves.DecryptClass<Card>("card1");
         }
 
@@ -115,12 +117,16 @@ It allows you to protect your game from cheating tools but it doesn't protect it
     ```csharp
     using Med.SafeValue;
     using UnityEngine;
+    using System;
 
     public class Test : MonoBehaviour
     {
         SafeFloat speed = new SafeFloat(500f);
         SafeInt health = new SafeInt(100);
         string title = "Plane 1";
+        char plClass = 'C';
+        long id = 15120548466974L;
+        DateTime lastSaved = DateTime.Now;
         bool isActive = true;
 
         void Awake()
@@ -132,17 +138,25 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 
         public void SaveValues()
         {
+            //will encrypt these values and save them in playerprefs
             speed.Value.EncryptFloat("plSpeed");
             health.Value.EncryptInt("plHealth");
             title.EncryptString("plTitle");
+            plClass.EncryptChar("plClass");
+            id.EncryptLong("plId");
+            lastSaved.EncryptDateTime("plLastSaved");
             isActive.EncryptBool("plAct");
         }
 
         public void LoadValues()
         {
+            //will load these values from playerprefs and decrypt them
             speed.Value = PlayerSaves.DecryptFloat("plSpeed");
             health.Value = PlayerSaves.DecryptInt("plHealth");
             title = PlayerSaves.DecryptString("plTitle");
+            plClass = PlayerSaves.DecryptChar("plClass");
+            id = PlayerSaves.DecryptLong("plId");
+            lastSaved = PlayerSaves.DecryptDateTime("plLastSaved");
             isActive = PlayerSaves.DecryptBool("plAct");
         }
     }
@@ -161,6 +175,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
     {
         void Awake()
         {
+            //starts the anti speed hack detection process and calls CloseGame() when a speed hack is detected
             StartCoroutine(AntiSpeedHack.Start(CloseGame, 2f, true));
         }
 
