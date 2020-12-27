@@ -2,6 +2,7 @@
 
 namespace Med.SafeValue
 {
+
     /// <summary>
     /// Hides a float from cheating tools by making an offset to the value.
     /// </summary>
@@ -21,15 +22,10 @@ namespace Med.SafeValue
         /// <summary>
         /// The value of this instance.
         /// </summary>
-        public float Value {
-            get
-            {               
-                return value - offset;
-            }
-            set
-            {
-                this.value = value + offset;
-            }
+        public float Value
+        {
+            get => value - offset;
+            set => this.value = value + offset;
         }
 
         /// <summary>
@@ -111,6 +107,14 @@ namespace Med.SafeValue
         {
             return f1.Value != i2.Value;
         }
+        public static bool operator ==(SafeFloat f1, SafeLong l2)
+        {
+            return f1.Value == l2.Value;
+        }
+        public static bool operator !=(SafeFloat f1, SafeLong l2)
+        {
+            return f1.Value != l2.Value;
+        }
         public static bool operator >(SafeFloat f1, SafeFloat f2)
         {
             return f1.Value > f2.Value;
@@ -143,6 +147,22 @@ namespace Med.SafeValue
         {
             return f1.Value <= i2.Value;
         }
+        public static bool operator >(SafeFloat f1, SafeLong l2)
+        {
+            return f1.Value > l2.Value;
+        }
+        public static bool operator <(SafeFloat f1, SafeLong l2)
+        {
+            return f1.Value < l2.Value;
+        }
+        public static bool operator >=(SafeFloat f1, SafeLong l2)
+        {
+            return f1.Value >= l2.Value;
+        }
+        public static bool operator <=(SafeFloat f1, SafeLong l2)
+        {
+            return f1.Value <= l2.Value;
+        }
         #endregion
     }
     /// <summary>
@@ -165,15 +185,8 @@ namespace Med.SafeValue
         /// </summary>
         public int Value
         {
-            get
-            {
-                //UnityEngine.Debug.Log(value);
-                return value - offset;
-            }
-            set
-            {
-                this.value = value + offset;
-            }
+            get => value - offset;
+            set => this.value = value + offset;
         }
 
         /// <summary>
@@ -254,6 +267,14 @@ namespace Med.SafeValue
         {
             return i1.Value != f2.Value;
         }
+        public static bool operator ==(SafeInt i1, SafeLong l2)
+        {
+            return i1.Value == l2.Value;
+        }
+        public static bool operator !=(SafeInt i1, SafeLong l2)
+        {
+            return i1.Value != l2.Value;
+        }
         public static bool operator >(SafeInt i1, SafeInt i2)
         {
             return i1.Value > i2.Value;
@@ -285,6 +306,204 @@ namespace Med.SafeValue
         public static bool operator <=(SafeInt i1, SafeFloat f2)
         {
             return i1.Value <= f2.Value;
+        }
+        public static bool operator >(SafeInt i1, SafeLong l2)
+        {
+            return i1.Value > l2.Value;
+        }
+        public static bool operator <(SafeInt i1, SafeLong l2)
+        {
+            return i1.Value < l2.Value;
+        }
+        public static bool operator >=(SafeInt i1, SafeLong l2)
+        {
+            return i1.Value >= l2.Value;
+        }
+        public static bool operator <=(SafeInt i1, SafeLong l2)
+        {
+            return i1.Value <= l2.Value;
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Hides a float from cheating tools by making an offset to the value.
+    /// </summary>
+    public struct SafeLong
+    {
+        private long offset;
+        private long value;
+
+
+        public SafeLong(long value)
+        {
+            var rand = new Random();
+            offset = rand.Next(-1000, 1000);
+            this.value = value + offset;
+        }
+
+        /// <summary>
+        /// The value of this instance.
+        /// </summary>
+        public long Value
+        {
+            get => value - offset;
+            set => this.value = value + offset;
+        }
+
+        /// <summary>
+        /// Resets the value and the offset to 0.
+        /// </summary>
+        public void Dispose()
+        {
+            offset = 0;
+            value = 0;
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
+
+        #region Operators
+        public static SafeLong operator +(SafeLong l1, SafeLong l2)
+        {
+            return new SafeLong(l1.Value + l2.Value);
+        }
+        public static SafeLong operator +(SafeLong l1, SafeInt i2)
+        {
+            return new SafeLong(l1.Value + i2.Value);
+        }
+        public static SafeLong operator +(SafeLong l1, SafeFloat f2)
+        {
+            return new SafeLong((long)Math.Round(l1.Value + f2.Value));
+        }
+        public static SafeLong operator ++(SafeLong l1)
+        {
+            return new SafeLong(l1.Value + 1);
+        }
+        public static SafeLong operator -(SafeLong l1, SafeLong l2)
+        {
+            return new SafeLong(l1.Value - l2.Value);
+        }
+        public static SafeLong operator -(SafeLong l1, SafeInt i2)
+        {
+            return new SafeLong(l1.Value - i2.Value);
+        }
+        public static SafeLong operator -(SafeLong l1, SafeFloat f2)
+        {
+            return new SafeLong((long)Math.Round(l1.Value - f2.Value));
+        }
+        public static SafeLong operator --(SafeLong l1)
+        {
+            return new SafeLong(l1.Value - 1);
+        }
+        public static SafeLong operator /(SafeLong l1, SafeLong l2)
+        {
+            return new SafeLong(l1.Value / l2.Value);
+        }
+        public static SafeLong operator /(SafeLong l1, SafeInt i2)
+        {
+            return new SafeLong(l1.Value / i2.Value);
+        }
+        public static SafeLong operator /(SafeLong l1, SafeFloat f2)
+        {
+            return new SafeLong((long)Math.Round(l1.Value / f2.Value));
+        }
+        public static SafeLong operator *(SafeLong l1, SafeLong l2)
+        {
+            return new SafeLong(l1.Value * l2.Value);
+        }
+        public static SafeLong operator *(SafeLong l1, SafeInt i2)
+        {
+            return new SafeLong(l1.Value * i2.Value);
+        }
+        public static SafeLong operator *(SafeLong l1, SafeFloat f2)
+        {
+            return new SafeLong((long)Math.Round(l1.Value * f2.Value));
+        }
+        public static SafeLong operator %(SafeLong l1, SafeLong l2)
+        {
+            return new SafeLong(l1.Value % l2.Value);
+        }
+        public static SafeLong operator %(SafeLong l1, SafeInt i2)
+        {
+            return new SafeLong(l1.Value % i2.Value);
+        }
+        public static SafeLong operator %(SafeLong l1, SafeFloat f2)
+        {
+            return new SafeLong((long)Math.Round(l1.Value % f2.Value));
+        }
+        public static bool operator ==(SafeLong l1, SafeLong l2)
+        {
+            return l1.Value == l2.Value;
+        }
+        public static bool operator !=(SafeLong l1, SafeLong l2)
+        {
+            return l1.Value != l2.Value;
+        }
+        public static bool operator ==(SafeLong l1, SafeInt i2)
+        {
+            return l1.Value == i2.Value;
+        }
+        public static bool operator !=(SafeLong l1, SafeInt i2)
+        {
+            return l1.Value != i2.Value;
+        }
+        public static bool operator ==(SafeLong l1, SafeFloat f2)
+        {
+            return l1.Value == f2.Value;
+        }
+        public static bool operator !=(SafeLong l1, SafeFloat f2)
+        {
+            return l1.Value != f2.Value;
+        }
+        public static bool operator >(SafeLong l1, SafeLong l2)
+        {
+            return l1.Value > l2.Value;
+        }
+        public static bool operator <(SafeLong l1, SafeLong l2)
+        {
+            return l1.Value < l2.Value;
+        }
+        public static bool operator >=(SafeLong l1, SafeLong l2)
+        {
+            return l1.Value >= l2.Value;
+        }
+        public static bool operator <=(SafeLong l1, SafeLong l2)
+        {
+            return l1.Value <= l2.Value;
+        }
+        public static bool operator >(SafeLong l1, SafeInt i2)
+        {
+            return l1.Value > i2.Value;
+        }
+        public static bool operator <(SafeLong l1, SafeInt i2)
+        {
+            return l1.Value < i2.Value;
+        }
+        public static bool operator >=(SafeLong l1, SafeInt i2)
+        {
+            return l1.Value >= i2.Value;
+        }
+        public static bool operator <=(SafeLong l1, SafeInt i2)
+        {
+            return l1.Value <= i2.Value;
+        }
+        public static bool operator >(SafeLong l1, SafeFloat f2)
+        {
+            return l1.Value > f2.Value;
+        }
+        public static bool operator <(SafeLong l1, SafeFloat f2)
+        {
+            return l1.Value < f2.Value;
+        }
+        public static bool operator >=(SafeLong l1, SafeFloat f2)
+        {
+            return l1.Value >= f2.Value;
+        }
+        public static bool operator <=(SafeLong l1, SafeFloat f2)
+        {
+            return l1.Value <= f2.Value;
         }
         #endregion
     }

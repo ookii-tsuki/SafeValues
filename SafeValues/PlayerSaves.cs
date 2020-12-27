@@ -16,7 +16,7 @@ namespace Med.SafeValue
         /// <summary>
         /// The encryption key. alwayse use the same key that you used to encrypt with when decrypting otherwise you will get an error.
         /// </summary>
-        public static string Key { get { return key; }
+        public static string Key { get => key;
             set
             {
                 if (value.Length == 32 || value.Length == 16)
@@ -28,104 +28,169 @@ namespace Med.SafeValue
         /// Encrypts and saves your integer to playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static void EncryptInt(this int value, string id)
+        public static void EncryptInt(this int value, string prefKey)
         {
             var i = new Int();
             i.x = value;
-            EncryptClass(i, id);
+            EncryptClass(i, prefKey);
         }
 
         /// <summary>
         /// Decrypts and loads your integer from playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static int DecryptInt(string id)
+        public static int DecryptInt(string prefKey, int defaultValue = default)
         {
-            var i = DecryptClass<Int>(id);
-            return i != null ? i.x : 0;
+            var i = DecryptClass<Int>(prefKey);
+            return i != null ? i.x : defaultValue;
         }
 
         /// <summary>
         /// Encrypts and saves your boolean to playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static void EncryptBool(this bool value, string id)
+        public static void EncryptBool(this bool value, string prefKey)
         {
             var bl = new Bool();
             bl.b = value;
-            EncryptClass(bl, id);
+            EncryptClass(bl, prefKey);
         }
 
         /// <summary>
         /// Decrypts and loads your boolean from playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static bool DecryptBool(string id)
+        public static bool DecryptBool(string prefKey, bool defaultValue = default)
         {
-            var bl = DecryptClass<Bool>(id);
-            return bl != null ? bl.b : false;
+            var bl = DecryptClass<Bool>(prefKey);
+            return bl != null ? bl.b : defaultValue;
         }
 
         /// <summary>
         /// Encrypts and saves your string to playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static void EncryptString(this string value, string id)
+        public static void EncryptString(this string value, string prefKey)
         {
             var st = new String();
             st.s = value;
-            EncryptClass(st, id);
+            EncryptClass(st, prefKey);
         }
 
         /// <summary>
         /// Decrypts and loads your string from playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static string DecryptString(string id)
+        public static string DecryptString(string prefKey, string defaultValue = default)
         {
-            var st = DecryptClass<String>(id);
-            return st != null ? st.s : "";
+            var st = DecryptClass<String>(prefKey);
+            return st != null ? st.s : defaultValue;
         }
 
         /// <summary>
         /// Encrypts and saves your float to playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static void EncryptFloat(this float value, string id)
+        public static void EncryptFloat(this float value, string prefKey)
         {
             var fl = new Float();
             fl.f = value;
-            EncryptClass(fl, id);
+            EncryptClass(fl, prefKey);
         }
 
         /// <summary>
         /// Decrypts and loads your float from playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static float DecryptFloat(string id)
+        public static float DecryptFloat(string prefKey, float defaultValue = default)
         {
-            var fl = DecryptClass<Float>(id);
-            return fl != null ? fl.f : 0;
+            var fl = DecryptClass<Float>(prefKey);
+            return fl != null ? fl.f : defaultValue;
+        }
+
+        /// <summary>
+        /// Encrypts and saves your char to playerprefs. 
+        /// Note: Will use a default key if the Key property is not set.
+        /// </summary>
+        public static void EncryptChar(this char value, string prefKey)
+        {
+            var ch = new Char();
+            ch.c = value;
+            EncryptClass(ch, prefKey);
+        }
+
+        /// <summary>
+        /// Decrypts and loads your char from playerprefs. 
+        /// Note: Will use a default key if the Key property is not set.
+        /// </summary>
+        public static char DecryptChar(string prefKey, char defaultValue = default)
+        {
+            var ch = DecryptClass<Char>(prefKey);
+            return ch != null ? ch.c : defaultValue;
+        }
+
+
+        /// <summary>
+        /// Encrypts and saves your long to playerprefs. 
+        /// Note: Will use a default key if the Key property is not set.
+        /// </summary>
+        public static void EncryptLong(this long value, string prefKey)
+        {
+            var lg = new Long();
+            lg.l = value;
+            EncryptClass(lg, prefKey);
+        }
+
+        /// <summary>
+        /// Decrypts and loads your long from playerprefs. 
+        /// Note: Will use a default key if the Key property is not set.
+        /// </summary>
+        public static long DecryptLong(string prefKey, long defaultValue = default)
+        {
+            var lg = DecryptClass<Long>(prefKey);
+            return lg != null ? lg.l : defaultValue;
+        }
+
+        /// <summary>
+        /// Encrypts and saves your DateTime to playerprefs. 
+        /// Note: Will use a default key if the Key property is not set.
+        /// </summary>
+        public static void EncryptDateTime(this DateTime value, string prefKey)
+        {
+            var lg = new Long();
+            lg.l = value.Ticks;
+            EncryptClass(lg, prefKey);
+        }
+
+        /// <summary>
+        /// Decrypts and loads your DateTime from playerprefs. 
+        /// Note: Will use a default key if the Key property is not set.
+        /// </summary>
+        public static DateTime DecryptDateTime(string prefKey, DateTime defaultValue = default)
+        {
+            var lg = DecryptClass<Long>(prefKey);
+            DateTime dt = lg != null ? new DateTime(lg.l) : defaultValue;
+            return dt;
         }
 
         /// <summary>
         /// Encrypts and saves your public fields of a class (must be Serializable) to playerprefs. 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static void EncryptClass<T>(this T obj, string id) where T : class
+        public static void EncryptClass<T>(this T obj, string prefKey) where T : class
         {
             var data = EncryptText(JsonUtility.ToJson(obj));
-            PlayerPrefs.SetString(id, data);
+            PlayerPrefs.SetString(prefKey, data);
         }
         /// <summary>
         /// Decrypts and loads your public fields of a class (must be Serializable) from playerprefs (do not use this with MonoBehaviour or ScriptableObject, use DecryptClassOverwrite instead). 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static T DecryptClass<T>(string id) where T : class
+        public static T DecryptClass<T>(string prefKey) where T : class
         {
-            if (PlayerPrefs.HasKey(id))
+            if (PlayerPrefs.HasKey(prefKey))
             {
-                var data = DecryptText(PlayerPrefs.GetString(id));
+                var data = DecryptText(PlayerPrefs.GetString(prefKey));
                 return JsonUtility.FromJson<T>(data);
             }
             return null;
@@ -135,14 +200,52 @@ namespace Med.SafeValue
         /// Decrypts and loads your public fields of a class (must be Serializable) from playerprefs to an existing object (do not use this with MonoBehaviour or ScriptableObject, use DecryptClassOverwrite instead). 
         /// Note: Will use a default key if the Key property is not set.
         /// </summary>
-        public static void DecryptClassOverwrite<T>(T obj, string id)
+        public static void DecryptClassOverwrite<T>(T obj, string prefKey)
         {
-            if (PlayerPrefs.HasKey(id))
+            if (PlayerPrefs.HasKey(prefKey))
             {
-                var data = DecryptText(PlayerPrefs.GetString(id));
+                var data = DecryptText(PlayerPrefs.GetString(prefKey));
                 JsonUtility.FromJsonOverwrite(data, obj);
             }
         }
+
+        /// <summary>
+        /// Returns true if the prefKey provided exists.
+        /// </summary>
+        public static bool HasPrefKey(string prefKey) => PlayerPrefs.HasKey(prefKey);
+
+        /// <summary>
+        /// Migrates the value stored for one key to an other key. This can be useful if you want to
+        /// rename a PlayerPrefs key, but without existing data stored at the old key from being lost.
+        /// </summary>
+        /// <param name="oldKey">The old key to move data from.</param>
+        /// <param name="newKey">The new key to store the data for.</param>
+        /// <param name="deleteOldKey">Whether to delete the old key or not.</param>
+        /// <returns>
+        /// Returns true if the migration operation is successful.
+        /// </returns>
+        public static bool MigratePrefKey(string oldKey, string newKey, bool deleteOldKey = true)
+        {
+            if (HasPrefKey(oldKey))
+            {
+                var oldKeyValue = PlayerPrefs.GetString(oldKey);
+                PlayerPrefs.SetString(newKey, oldKeyValue);
+                if (deleteOldKey)
+                    DeletePrefKey(oldKey);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Deletes prefKey and its corresponding value.
+        /// </summary>
+        public static void DeletePrefKey(string prefKey) => PlayerPrefs.DeleteKey(prefKey);
+
+        /// <summary>
+        /// Deletes all the prefKeys and all their corresponding values.
+        /// </summary>
+        public static void DeleteAllPrefKeys() => PlayerPrefs.DeleteAll();
 
         private static string EncryptText(string plainText)
         {
@@ -241,5 +344,16 @@ namespace Med.SafeValue
         {
             public float f;
         }
+        [Serializable]
+        class Char
+        {
+            public char c;
+        }
+        [Serializable]
+        class Long
+        {
+            public long l;
+        }
+
     }
 }
