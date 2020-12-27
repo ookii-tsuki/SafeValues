@@ -57,12 +57,17 @@ It allows you to protect your game from cheating tools but it doesn't protect it
     {
         SafeFloat speed = new SafeFloat(500f);
         SafeInt health = new SafeInt(100);
+        SafeLong plId = new SafeLong(57821103964721L);
 
         public RigidBody rb;
 
         public void DealDamage(int amount)
         {
             health.Value -= amount;
+        }
+        public long GetID()
+        {
+            return pl.Value;
         }
         void Update()
         {
