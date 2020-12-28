@@ -1,3 +1,6 @@
+<p align="center">
+    <img src="https://i.ibb.co/fDwK75r/Safe-Values-Icon.png" width="300" alt="Safe Values" />
+</p>
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
