@@ -25,7 +25,7 @@ namespace Med.SafeValue
         public float Value
         {
             get => value - offset;
-            set => this.value = value + offset;
+            set => this = new SafeFloat(value);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace Med.SafeValue
         public int Value
         {
             get => value - offset;
-            set => this.value = value + offset;
+            set => this = new SafeInt(value);
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace Med.SafeValue
         public long Value
         {
             get => value - offset;
-            set => this.value = value + offset;
+            set => this = new SafeLong(value);
         }
 
         /// <summary>
