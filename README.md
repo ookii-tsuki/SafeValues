@@ -41,6 +41,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 ### Installation
 
 * Download the [Latest release](https://github.com/med9999/SafeValues/releases/tag/1.0.1.0) then extract `SfVal.zip` and place the `SfVal.dll` and `SfVal.xml` files in Assets/Plugins of your project.
+* It is recommended to build your game with IL2CPP.
 
 
 <!-- USAGE EXAMPLES -->
