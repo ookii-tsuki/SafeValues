@@ -30,9 +30,9 @@ This is a small project I have been working on for anti cheating in Unity Engine
 It allows you to protect your game from cheating tools but it doesn't protect its files from being ripped off.
 
 ###### Key Features
-    * Hides variables in memory.
-    * Encrypts and extends PlayerPrefs.
-    * Detects speedhacks.
+   * Hides variables in memory.
+   * Encrypts and extends PlayerPrefs.
+   * Detects speedhacks.
 
 
 <!-- GETTING STARTED -->
