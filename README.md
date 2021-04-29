@@ -199,7 +199,7 @@ It allows you to protect your game from cheating tools but it doesn't protect it
 <!-- DEMO -->
 ## Demo
 
-Try a WebGL [Demo](https://med9999.github.io/SafeValues/index.html)
+Try a WebGL [Demo](https://ookii-tsuki.github.io/SafeValues/index.html)
 
 <!-- LICENSE -->
 ## License
