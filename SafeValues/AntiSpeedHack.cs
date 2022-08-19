@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Med.SafeValue
 {
     /// <summary>
-    /// Guards the game from speed hacks (it's not recommanded to use it in an online game as everything would be client side)
+    /// Guards the game from speed hacks (it's not recommended to use it in an online game as everything would be client side)
     /// </summary>
     public static class AntiSpeedHack
     {
